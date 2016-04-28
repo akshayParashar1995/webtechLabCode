@@ -1,0 +1,119 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<style>
+.bg-1 {
+    background-color: #1abc9c; /* Green */
+    color: #ffffff;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+</style>
+<body  >
+	<div class="container bg-1 text-center">
+		<ul class="nav nav-tabs ">
+    			<li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+    			<li><a href="#signup" data-toggle="tab">Signup</a></li>
+  		</ul>
+  		<br>
+		<div class="tab-content">
+	   		<div class = "tab-pane fade" id = "signup">
+			  	<form class="form-horizontal" role="form">
+					<div class="form-group">
+    						<label class="control-label col-sm-2" for="name">Name:</label>
+    						<div class="col-sm-6">
+      							<input type="text" class="form-control" id="name" placeholder="Enter your Name">
+    						</div>
+  					</div>
+					<div class="form-group">
+    						<label class="control-label col-sm-2" for="rollno">Roll No:</label>
+    						<div class="col-sm-6">
+      							<input type="text" class="form-control"id="rollno"placeholder="Enter your Roll number">
+    						</div>
+  					</div>
+					<div class="form-group">
+    						<label class="control-label col-sm-2" for="batch">Batch:</label>
+    						<div class="col-sm-6">
+      							<input type="text" class="form-control" id="batch" placeholder="Enter your Batch">
+    						</div>
+  					</div>
+					<div class="form-group">
+    						<label class="control-label " for="year">Year:</label>
+    							<label class="radio">
+      								<input type="radio" name="optradio">1st year
+    							</label>
+    							<label class="radio">
+      								<input type="radio" name="optradio">2nd year
+    							</label>
+    							<label class="radio">
+      								<input type="radio" name="optradio">3rd year
+    							</label>
+							<label class="radio">
+      								<input type="radio" name="optradio">4th year
+    							</label>
+  					</div>
+  					<div class="form-group">
+    						<label class="control-label col-sm-2" for="email">Email:</label>
+    						<div class="col-sm-6">
+      							<input type="email" class="form-control" id="email" placeholder="Enter email">
+    						</div>
+  					</div>
+  					<div class="form-group">
+    						<label class="control-label col-sm-2" for="pwd">Password:</label>
+    						<div class="col-sm-6">
+      							<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+    						</div>
+  					</div>  					
+  					<div class="form-group">
+    						<div class="col-sm-offset-2 col-sm-6">
+      							<button type="signupbutton" class="btn btn-primary">Signup</button>
+    						</div>
+  					</div>
+				</form>
+	   		</div>
+	   		<div class = "tab-pane fade in active" id = "login">
+	   			<form class="form-horizontal" role="form">
+	    				<div class="form-group">
+	      					<label class="control-label col-sm-2" for="email">Email:</label>
+	      					<div class="col-sm-6">
+							<input type="email" class="form-control" id="loginEmail" placeholder="Enter email">
+	      					</div>
+	    				</div>
+	    				<div class="form-group">
+	      					<label class="control-label col-sm-2" for="pwd">Password:</label>
+	      					<div class="col-sm-6">          
+							<input type="password" class="form-control" id="loginPwd" placeholder="Enter password">
+	      					</div>
+	    				</div>
+	    				<div class="form-group">        
+	      					<div class="col-sm-offset-2 col-sm-4">
+							<div class="checkbox">
+		  						<label><input type="checkbox"> Remember me</label>
+							</div>
+	      					</div>
+	    				</div>
+	   				<div class="col-sm-offset-2 col-sm-5">
+	    					<a href="#"><p>Forgot your password..Reset here </p></a>
+	   				</div>
+	    				<div class="form-group">        
+	      					<div class="col-sm-offset-2 col-sm-4">
+							<button class="btn btn-primary" id="loginButton">Login</button>
+	      					</div>
+	    				</div>
+	  			</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="..{{STATIC_URL}}js/login.js">
+	</script>
+ 	
+</body>
+</html>
