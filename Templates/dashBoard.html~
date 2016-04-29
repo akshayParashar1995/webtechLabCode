@@ -75,10 +75,8 @@ body {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      {%for i in content.user%}
-      <a class="navbar-brand" href="#myPage">Hello {{i.username}}!</a>
-
-      {% endfor %}
+      <a class="navbar-brand" href="#myPage">CLASSROOM</a>
+	<p>{{content.user.username}}</p>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
