@@ -19,7 +19,7 @@ class Student(models.Model):
 	phone_no=models.BigIntegerField(max_length=10)
 	st_course = models.ManyToManyField(Course)
 	def __str__(self):
-	    return self.dob;
+	    return "dob:"+str(self.dob);
 	
 class Teacher(models.Model):
 	# teacher_id=models.IntegerField(max_length=8)
@@ -30,7 +30,7 @@ class Teacher(models.Model):
 	teacher_course = models.ManyToManyField(Course)
 
 	def __str__(self):
-	    return self.teacher_name;
+	    return self.user.username;
 	
 	
 # class StudentCourseRelation(model.Model):
