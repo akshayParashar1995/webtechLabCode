@@ -34,22 +34,24 @@ def loginCredentials(request):
 	
     #user =  User.objects.filter(email=request.GET.get("email"), password=request.GET.get("pwd"))
     #if user is not None:
-    exists=User.objects.filter(email=request.GET.get("email"), password=request.GET.get("pwd"))
-    print(exists)
-
-    if len(exists)!=0:
+    exists=User.objects.filter(email=request.GET.get("email"), password=request.GET.get("pwd")).exists();
+    content={'user':exists,'status':stat}
+    if exists:
     # the password verified for the user
         print("The password is valid")
         stat=1;
+        return render(request,'dashBoard.html',{'content':content})
     else:
     # the authentication system was unable to verify the username and password
         print("The username and password were incorrect.")
-        stat=0;
-        
-    
-    #return HttpResponse(json.dumps({'status':stat}), content_type="application/json")
-    return render(request,'dashBoard.html',{'user':exists})
-        
+        stat=0;	
+    	return HttpResponse(json.dumps({'status':stat}), content_type="application/json")
+ 
+def dashboard(request):
+	
+
+
+       
 def temp(request):
 
     return render(request,'temp.html',{
