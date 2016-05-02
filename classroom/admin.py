@@ -14,4 +14,8 @@ admin.site.register(Assignment)
 admin.site.register(Notes)
 admin.site.register(Answers)
 admin.site.register(Video)
+admin.site.register(Test)
+# admin.site.register(StudentCourseRelation)
+# admin.site.register(TeacherCourseRelation)
+# admin.site.register(AssignmentCourseRelation)
 
