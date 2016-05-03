@@ -87,7 +87,7 @@ class Answers(models.Model):
 	question_id = models.ForeignKey(Questions)
 	isCorrect = models.IntegerField()
 	def __str__(self):
-		return self.question_id;
+		return str(self.question_id);
 
 
 
