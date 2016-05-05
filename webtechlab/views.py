@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.db.models import Q
 from django.core import serializers
 from classroom.models import *
-from urllib.request import urlopen
+from urllib2 import urlopen
 import base64
 import requests
 import datetime
