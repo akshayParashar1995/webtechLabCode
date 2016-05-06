@@ -44,8 +44,9 @@ class Assignment(models.Model):
 	#assignment_id=models.IntegerField(max_length=8,default=0,editable=False)
 	date_of_submission=models.DateTimeField()
 	course_id=models.ForeignKey(Course)
+	title = models.CharField(max_length = 20)
 	def __str__(self):
-		return "date:"+str(self.date_of_submission);
+		return self.title;
 	
 
 # class AssignmentCourseRelation(models.Model):
