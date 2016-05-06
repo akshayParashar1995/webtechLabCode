@@ -188,41 +188,43 @@ body {
 
 	  <div class = "jumbotron" id="section3">         
 		<h1>Assignments</h1>
+		{% for d in content.arrofdata %}
 		<div class="panel panel-default">
-			<div class="panel-heading">Assignment</div>
-			<div class="panel-body">Panel Content</div>
-		 </div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Assignment</div>
-			<div class="panel-body">Panel Content</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Assignment</div>
-			<div class="panel-body">Panel Content</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Assignment</div>
-			<div class="panel-body">Panel Content</div>
-		 </div> 
+			<div class="panel-heading">Assignment: <p>{{d.coursename}}</p></div>	
+			<div class="panel-body">
+				{% if d.assignment %}
+					{% for i in d.assignment %}
+						<p>{{i.title}}</p>
+						<p>{{i.date_of_submission}}</p>
+					{% endfor %}
+				{% else %}
+					<p>No assignment available.</p>
+				{% endif %}
+		    </div>
+		 </div>	
+		 {% endfor %} 
 	  </div>
+
+
 	  <div class = "jumbotron" id="section41">         
 		<h1>New Test</h1>
+		{% for d in content.arrofdata %}
 		<div class="panel panel-default">
-			<div class="panel-heading">Test</div>
-			<div class="panel-body">Panel Content</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Test</div>
-			<div class="panel-body">Panel Content</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Test</div>
-			<div class="panel-body">Panel Content</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Test</div>
-			<div class="panel-body">Panel Content</div>
-		</div>
+			<div class="panel-heading">Test: <p>{{d.coursename}}</p></div>	
+			<div class="panel-body">
+				{% if d.test %}
+					{% for i in d.test %}
+						<p>{{i.title}}</p>
+						<p>{{i.date_of_test}}</p>
+						<p>{{i.max_marks}}</p>
+						<p>{{i.duration}}</p>
+					{% endfor %}
+				{% else %}
+					<p>No assignment available.</p>
+				{% endif %}
+		    </div>
+		 </div>	
+		 {% endfor %}
 	  </div>      
 	  <div class = "jumbotron" id="section42">         
 		<h1>Test Result</h1>
