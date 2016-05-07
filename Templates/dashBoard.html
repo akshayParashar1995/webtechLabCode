@@ -4,16 +4,18 @@
   <title>Classroom</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css">
   <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <style >
 body {
 	  font: 400 15px/1.8 Lato, sans-serif;
 	  color: #777;
+	  background-image: url("http://cdn8.staztic.com/app/a/2622/2622455/cream-wallpapers-2-0-s-307x512.jpg");
   }
   .container-fluid {
 	  padding-top: 40px;
@@ -54,10 +56,11 @@ body {
   .dropdown-menu li a:hover {
 	  background-color: red !important;
   }
+ 
   #section1 {color: #000; background-color: #9e8886;}
-  #section2 {color: #000; background-color: #c1c38d;}
+  #section2 {color: #000; background-color: rgba(49, 119, 169, 0.58);}
   #section3 {color: #000; background-color: #b9c5c8;}
-  #section41 {color: #000; background-color: #d6c86f;}
+  #section41 {color: #000; background-color: rgba(73, 16, 80, 0.42);}
   #section42 {color: #000; background-color: #e5857a;}
   
   @media screen and (max-width: 810px) {
@@ -117,46 +120,50 @@ body {
 
 	<div class="col-sm-10">
 	  <div class = "jumbotron"  id="section1">    
-		<h1>All Updates</h1>
+		<legend><h1>All Updates</h1></legend>
 		<div class="panel panel-default">
-			<div class="panel-heading">Notes</div>
+			<div class="panel-heading"><h3 class="h3">Notes</h3></div>
 			<div class="panel-body">
 			{% for d in content.arrofdata %}
-			<p>{{d.coursename}}</p>
+			<p><i><u>{{d.coursename}}</u></i></p><br>
 				{% if d.notes %}
 					{% for i in d.notes %}
-						<p>{{i.title}}</p>
+						<p style="color:blue;">{{i.title}}</p><br>
 					{% endfor %}
+					<hr class="hrc">
 				{% else %}
-					<p>No notes available.</p>
+					<p><i>No notes available.</i></p>
+					<hr class="hrc">
 				{% endif %}
 			{% endfor %}
 			</div>
 		 </div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Assignments</div>
+			<div class="panel-heading"><h3 class="h3">Assignments</h3></div>
 			<div class="panel-body">
 			{% for d in content.arrofdata %}
-			<p>{{d.coursename}}</p>
+			<p><i><u>{{d.coursename}}</u></i></p>
 				{% if d.assignment %}
 					{% for i in d.assignment %}
-						<p>{{i.title}}</p>
+						<p style="color:blue;">{{i.title}}</p><br>
 					{% endfor %}
+					<hr class="hrc">
 				{% else %}
-					<p>No assignment available.</p>
+					<p><i>No assignment available.</i></p>
 				{% endif %}
 			{% endfor %}
 			</div>
 		</div>
 		
 		<div class="panel panel-default">
-			<div class="panel-heading">Test</div>
+			<div class="panel-heading"><h3 class="h3">Test</h3></div>
 			<div class="panel-body">
 			{% for d in content.arrofdata %}
-			<p>{{d.coursename}}</p>
+			<p><i><u>{{d.coursename}}</u></i></p>
 				{% if d.test %}
 					{% for i in d.test %}
-						<p>{{i.title}}</p>
+						<p style="color:blue;">{{i.title}}</p>
+						<hr class="hrc">
 					{% endfor %}
 				{% else %}
 					<p>No test available.</p>
@@ -167,19 +174,21 @@ body {
 	  </div>
 
 	  <div class = "jumbotron" id="section2"> 
-		<h1>Notes</h1>
+		<legend><h1>Notes</h1></legend>
 		{% for d in content.arrofdata %}
 		<div class="panel panel-default">
-			<div class="panel-heading">Notes: <p>{{d.coursename}}</p></div>	
+			<div class="panel-heading"><h3 class="h3">Notes:</h3> <p><i><u>{{d.coursename}}</u></i></p></div>	
 			<div class="panel-body">
 				{% if d.notes %}
 					{% for i in d.notes %}
-						<p>{{i.title}}</p>
-						<p>{{i.teacher}}</p>
-						<p>{{i.date}}</p>
+						<p style="color:blue;">{{i.title}}</p><br>
+						<p style="color: grey;"><i>prepared by:</i></p>
+						<p style="color:green;">{{i.teacher}}</p>
+						<p style="color:black;">{{i.date}}</p>
+						<hr class="hrc">
 					{% endfor %}
 				{% else %}
-					<p>No test available.</p>
+					<p><i>No notes available.</i></p>
 				{% endif %}
 		    </div>
 		 </div>	
@@ -187,18 +196,20 @@ body {
 	  </div> 
 
 	  <div class = "jumbotron" id="section3">         
-		<h1>Assignments</h1>
+		<legend><h1>Assignments</h1></legend>
 		{% for d in content.arrofdata %}
 		<div class="panel panel-default">
-			<div class="panel-heading">Assignment: <p>{{d.coursename}}</p></div>	
+			<div class="panel-heading"><h3 class="h3">Assignment:</h3> <p><i><u>{{d.coursename}}</u></i></p></div>	
 			<div class="panel-body">
 				{% if d.assignment %}
 					{% for i in d.assignment %}
-						<p>{{i.title}}</p>
-						<p>{{i.date_of_submission}}</p>
+						<p style="color:blue;">{{i.title}}</p><br>
+						<p style="color: grey;"><i>last date of submisssion:</i></p>
+						<p style="color: green;">{{i.date_of_submission}}</p>
+						<hr class="hrc">
 					{% endfor %}
 				{% else %}
-					<p>No assignment available.</p>
+					<p><i>No assignment available.</i></p>
 				{% endif %}
 		    </div>
 		 </div>	
@@ -207,17 +218,21 @@ body {
 
 
 	  <div class = "jumbotron" id="section41">         
-		<h1>New Test</h1>
+		<legend><h1>New Test</h1></legend>
 		{% for d in content.arrofdata %}
 		<div class="panel panel-default">
-			<div class="panel-heading">Test: <p>{{d.coursename}}</p></div>	
+			<div class="panel-heading">Test: <p><i><u>{{d.coursename}}</u></i></p></div>	
 			<div class="panel-body">
 				{% if d.test %}
 					{% for i in d.test %}
-						<p>{{i.title}}</p>
-						<p>{{i.date_of_test}}</p>
-						<p>{{i.max_marks}}</p>
-						<p>{{i.duration}}</p>
+						<p style="color:blue;">{{i.title}}</p>
+						<p style="color: grey;"><i>Date of test:</i></p>
+						<p style="color:green;">{{i.date_of_test}}</p><br>
+						<p style="color: grey;"><i>Maximum marks:</i></p>
+						<p style="color:#BBBB21;;">{{i.max_marks}}</p><br>
+						<p style="color: grey;"><i>Time limit:</i></p>
+						<p style="color:black;">{{i.duration}}</p>
+						<hr class="hrc">
 					{% endfor %}
 				{% else %}
 					<p>No assignment available.</p>
@@ -227,7 +242,7 @@ body {
 		 {% endfor %}
 	  </div>      
 	  <div class = "jumbotron" id="section42">         
-		<h1>Test Result</h1>
+		<legend><h1>Test Result</h1></legend>
 		<p>No Results Yet!</p>
 	  </div>
 	</div>

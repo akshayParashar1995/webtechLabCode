@@ -1,0 +1,16 @@
+.panel-default>.panel-heading{
+	background-color:  rgba(136, 204, 28, 0.69);
+}
+.hrc{
+ 	height: 1px;
+ 	background-color: grey;
+ }
+ .panel-body{
+ 	background-color: rgba(154, 205, 50, 0.32);
+ }
+ .h3{
+ 	color: #244C6F;
+ }
+ .jumbotron p{
+ 	color: red;
+ }
