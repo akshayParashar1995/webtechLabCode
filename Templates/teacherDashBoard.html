@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Classroom</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<style >
+body {
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777;
+  }
+  .container-fluid {
+      padding-top: 40px;
+      padding-bottom: 40px;
+  }
+  .nav-tabs li a {
+      color: #777;
+  }
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+      color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #fff !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  .open .dropdown-toggle {
+      color: #fff;
+      background-color: #555 !important;
+  }
+  .dropdown-menu li a {
+      color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+      background-color: red !important;
+  }
+  #section1 {color: #fff; background-color: #9e8886;}
+  #section2 {color: #fff; background-color: #c1c38d;}
+  #section3 {color: #fff; background-color: #b9c5c8;}
+  #section41 {color: #fff; background-color: #d6c86f;}
+  #section42 {color: #fff; background-color: #e5857a;}
+  
+  @media screen and (max-width: 810px) {
+    #section1, #section2, #section3, #section41, #section42  {
+        margin-left: 150px;
+    }
+</style>
+<body id="myPage" data-spy="scroll" data-target=".sidebar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      {%for i in content.user%}
+      <a class="navbar-brand" href="#myPage">Hello {{i.username}}!</a>
+
+      {% endfor %}
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#myPage">DASHBOARD</a></li>
+        <li><a href="#band">COURSES</a></li>
+        <li><a href="#tour">PROFILE</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">WORK
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">NOTES</a></li>
+            <li><a href="#">ASSIGNMENT</a></li>
+            <li><a href="#">TEST</a></li> 
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</br>
+
+
+<div class="container-fluid" id = "myPage">
+  <div class="row">
+    <nav class="col-sm-2 sidebar"  id="myScrollspy">
+      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+        <li class="active"><a href="#section1">Add Course</a></li>
+        <li><a href="#section2">Add Notes</a></li>
+        <li><a href="#section3">Add Assignments</a></li>
+        
+        </li>
+      </ul>
+    </nav>
+    <div class="col-sm-10">
+      <div class = "jumbotron"  id="section1">    
+        
+        <div class="container">
+    <h1>Courses</h1>
+    <hr>
+  
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        
+      
+        <h3>Add course details</h3>
+        
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Course Name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Data Structures">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Start Date:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="03/11/1862">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Duration:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="5 months">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Fees:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="10,000">
+            </div>
+          </div>
+  <div class="form-group">
+            <label class="col-lg-3 control-label">Enter Descripton:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Involves basic algos">
+            </div>
+          </div>
+          
+                    <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+      
+      <div class = "jumbotron" id="section2"> 
+        
+        <div class="container">
+    <h1>Notes</h1>
+    <hr>
+  
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        
+      
+        <h3>Add notes details</h3>
+        
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Topic:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Data Structures">
+            </div>
+          </div>
+          
+          
+  <div class="form-group">
+            <label class="col-lg-3 control-label">Enter Descripton:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Involves basic algos">
+            </div>
+          </div>
+
+<div class="form-group">
+	<label class="col-lg-3 control-label">Upload notes:</label>
+        <div class="col-lg-8">
+          
+          
+          
+          <input type="file" class="form-control">
+        </div>
+      </div>
+          
+                    <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+              
+     <div class = "jumbotron" id="section3"> 
+        
+        <div class="container">
+    <h1>Assignment</h1>
+    <hr>
+  
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        
+      
+        <h3>Add assignment details</h3>
+        
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Topic:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Data Structures">
+            </div>
+          </div>
+          
+          
+  <div class="form-group">
+            <label class="col-lg-3 control-label">Enter Descripton:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Involves basic algos">
+            </div>
+          </div>
+<div class="form-group">
+            <label class="col-lg-3 control-label">Date of Submission:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="03/11/1862">
+            </div>
+          </div>
+<div class="form-group">
+	<label class="col-lg-3 control-label">Upload assignment:</label>
+        <div class="col-lg-8">
+          
+          
+          
+          <input type="file" class="form-control">
+        </div>
+      </div>
+          
+                    <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div> 
+</body>
+</html>
