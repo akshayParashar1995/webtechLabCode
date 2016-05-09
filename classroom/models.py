@@ -46,7 +46,7 @@ class Assignment(models.Model):
 	#assignment_id=models.IntegerField(max_length=8,default=0,editable=False)
 	date_of_submission=models.DateTimeField()
 	course_id=models.ForeignKey(Course)
-	title = models.CharField(max_length = 20)
+	title = models.CharField(max_length = 200)
 	def __str__(self):
 		return self.title;
 	
@@ -60,7 +60,7 @@ class Notes(models.Model):
 	course_id=models.ForeignKey(Course)
 	teacher_id=models.ForeignKey(Teacher)
 	date=models.DateTimeField()
-	title=models.CharField(max_length=10)
+	title=models.CharField(max_length=100)
 	def __str__(self):
 		return self.title;
 	
@@ -99,7 +99,7 @@ class Video(models.Model):
 	course_id=models.ForeignKey(Course)
 	teacher_id=models.ForeignKey(Teacher)
 	date=models.DateTimeField()
-	title=models.CharField(max_length=10)
+	title=models.CharField(max_length=100)
 	# path 
 	description = models.CharField(max_length = 255)	
 	def __str__(self):
