@@ -15,6 +15,8 @@ class Student(models.Model):
 	#studentt_id=models.IntegerField(max_length=8,editable=False)
 	user = models.OneToOneField(User)
 	dob=models.DateField()
+	rollno=models.CharField(max_length=20)
+	year=models.IntegerField()
 	phone_no=models.BigIntegerField()
 	st_course = models.ManyToManyField(Course)
 	def __str__(self):
