@@ -101,8 +101,8 @@ def openCourses(request):
 		userLogged=User.objects.filter(id=userId)
 		student = Student.objects.filter(user = userLogged[0])
 		courses=student[0].st_course.all()
-	print(courses)
-	return render(request, 'listOfNotes.html', {'courses':courses})
+	# print(courses)
+	return render(request, 'listOfCourses.html', {'courses':courses})
 
 
 
@@ -126,7 +126,7 @@ def openTest(request):
 
 def displayContent(request,user):
 	student = Student.objects.filter(user = user)
-	print(student[0].st_course.all())
+	# print(student[0].st_course.all())
 	courses=student[0].st_course.all()
 	arrofdata = []
 
@@ -137,17 +137,17 @@ def displayContent(request,user):
 		temp['assignment']= []
 		temp['test'] = []
 
-		print(Notes.objects.filter(course_id = i.id))
+		# print(Notes.objects.filter(course_id = i.id))
 		notes = Notes.objects.filter(course_id = i.id)
 		for j in notes:
 			temp['notes'].append(j)
 
-		print(Assignment.objects.filter(course_id = i.id))
+		# print(Assignment.objects.filter(course_id = i.id))
 		assign = Assignment.objects.filter(course_id = i.id)
 		for j in assign:
 			temp['assignment'].append(j)
 
-		print(Test.objects.filter(course_id = i.id))
+		# print(Test.objects.filter(course_id = i.id))
 		testss = Test.objects.filter(course_id = i.id)
 		for j in testss:
 			temp['test'].append(j)
@@ -192,3 +192,25 @@ def submitAnswer(request):
 		'length': len(dict)
 	}
 	return HttpResponse(json.dumps(temp), content_type="application/json")
+
+def openNotesList(request):
+	courseId = request.GET.get("courseid")
+	course = Course.objects.filter(id = courseId)
+	notes = Notes.objects.all()
+	# print(course[0].course_name)
+	arrofnotes = []
+	for i in notes:
+		# print(i.course_id)
+		if(str(i.course_id) == str(course[0].course_name)):
+			arrofnotes.append(i)
+	print(arrofnotes)
+	content={'course':course[0], 'arrofnotes': arrofnotes}
+	return render(request, 'listOfNotes.html', {'content':content})
+
+def openNotes(request):
+	notesId = request.GET.get("notesid")
+	notes = Notes.objects.filter(id = notesId)
+	course = Course.objects.filter(course_name = notes[0].course_id)
+	link = "/static/notes/" + str(notes[0].link) + ".pdf"
+	content={'notes': notes[0], 'course':course[0], 'link' : link}
+	return render(request, 'notes.html', {'content':content})

@@ -111,12 +111,12 @@ body {
 </br>
 
 <div class = "jumbotron" id="section2"> 
-  <h1>{{content.course.course_name}}</h1>
-  {% for notes in content.arrofnotes %}
+  <h1>Courses</h1>
+  {% for course in courses %}
     <div class="panel panel-default">
-    <div class="panel-heading">{{notes.title}}</div>
-    <div class="panel-body"><h4>Notes updated on : {{notes.date}}</h4><br>
-    <a href = "/openNotes/?notesid={{notes.id}}" class="btn btn-primary">View Notes in PDF</a>
+    <div class="panel-heading">{{course.course_name}}</div>
+    <div class="panel-body"><h3>Course duration : {{course.duration}}</h3><br><h4>Course Fees : {{course.course_fee}}</h4>
+    <a href = "/openNotesList/?courseid={{course.id}}" class="btn btn-primary">View Notes</a>
     </div>
     </div>
   {% endfor %}
