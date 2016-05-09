@@ -52,9 +52,12 @@
   .jumbo1 {
       background-color: #fff;
     }
+    .anandita{
+      color: black;
+    }
   </style>
 </head>
-<body>
+<body style="background-color: rgba(49, 49, 47, 0.2);">
   <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -93,23 +96,25 @@
 </br>
 <div class="container">
   <div class="page-header">
-    <h1>{{content.test.course_id}} : {{content.test.title}}</h1>      
+    <h1 style="color: blue;">{{content.test.course_id}}</h1>  <h1 style="color: green; font-size: xx-large;"> {{content.test.title}}</h1>      
   </div>
   {% for q in content.arrofquestions %}
-  <div class="jumbotron jumbo1">
-    <div class="well"><p>Q. {{q.question_text}}</p>
+  <div class="jumbotron jumbo1" style="background-color: rgba(62, 58, 59, 0.61);;
+    border-color: red;
+    border: 1px solid;">
+    <div class="well" style="border: 1px solid;"><p class="anandita">Q. {{q.question_text}}</p>
   <form role="form">
-    <label class="radio">
-      <input type="radio" name="{{q.id}}" value = "1" id = "op1-{{q.id}}">{{q.answer1}}
+    <label class="radio anandita">
+      <input type="radio" name="{{q.id}}" value = "1" id = "op1-{{q.id}}" >{{q.answer1}}
     </label>
-    <label class="radio">
+    <label class="radio anandita" >
       <input type="radio" name="{{q.id}}" value = "2" id = "op2-{{q.id}}">{{q.answer2}}
     </label>
-    <label class="radio">
-      <input type="radio" name="{{q.id}}" value = "3" id = "op3-{{q.id}}">{{q.answer3}}
+    <label class="radio anandita">
+      <input type="radio" name="{{q.id}}" value = "3" id = "op3-{{q.id}}" >{{q.answer3}}
     </label>
-    <label class = "radio">
-      <input type = "radio" name="{{q.id}}" value = "4" id = "op4-{{q.id}}">{{q.answer4}}
+    <label class = "radio anandita">
+      <input type = "radio" name="{{q.id}}" value = "4" id = "op4-{{q.id}}" >{{q.answer4}}
     </label>
   </form>
     </div>

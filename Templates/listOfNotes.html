@@ -111,11 +111,11 @@ body {
 </br>
 
 <div class = "jumbotron" id="section2"> 
-  <h1>Courses</h1>
+  <legend><h1 style="margin-left: 40%;">Courses</h1></legend>
   {% for course in courses %}
     <div class="panel panel-default">
-    <div class="panel-heading">{{course.course_name}}</div>
-    <div class="panel-body"><h3>Course duration : {{course.duration}}</h3><br><h4>Course Fees : {{course.course_fee}}</h4>
+    <div class="panel-heading" style="font-size: x-large;background-color: rgba(122, 255, 0, 0.7);"><b><u>{{course.course_name}}</u></b></div>
+    <div class="panel-body" style="background-color:rgb(88, 142, 89);"><h3 style="font-weight: 600;">Course duration : <i>{{course.duration}} weeks</i></h3><br><h4>Course Fees :<i> Rs. {{course.course_fee}}</i></h4><br><br>
     <button type="button" class="btn btn-primary">View Notes</button>
     </div>
     </div>
