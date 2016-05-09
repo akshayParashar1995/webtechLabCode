@@ -24,7 +24,30 @@ def login(request):
 	return render(request,'login.html',{
 	'hello':"hey"
 	});
-		
+def signUp(request):
+	#print(request.POST.get("nameSignup"));
+	#print(request.POST.get("rollnoSignup"));
+	#print(request.POST.get("batchSignup"));
+	#print(request.POST.get("optradio"));
+	print(request.POST.get("emailSignup"));
+	print(request.POST.get("pwdSignup"));
+	userSigningUp=User(username = request.POST.get("emailSignup"), is_active=True)
+	userSigningUp.set_password(request.POST.get("pwdSignup"))
+	userSigningUp.save()
+	student=Student(user=userSigningUp,rollno=request.POST.get("rollnoSignup"),year=2,dob=datetime.datetime.now(),phone_no=9911991199)
+	student.save()
+
+	user = auth.authenticate(username = request.POST.get("emailSignup"), password = request.POST.get("pwdSignup"))
+	print(user)
+	if (user is not None):
+		auth.login(request, user)
+		stat = 1;
+		return displayContent(request,user)
+		# content = {'user': user,'status': stat}
+		# return render(request,'dashBoard.html',{'content':content})
+	else:		
+		stat = "invalid username or password";
+		return render(request,'login.html', {'status': stat})
 
 def loginCredentials(request):
 
@@ -125,4 +148,3 @@ def displayContent(request,user):
 	content = {'user':user, 'arrofdata': arrofdata,'status': stat}
 	
 	return render(request,'dashBoard.html',{'content':content})
-

@@ -25,24 +25,24 @@
   		</ul>
   		<br>
 		<div class="tab-content">
-	   		<div class = "tab-pane fade" id = "signup">
-			  	<form class="form-horizontal" role="form">
+	   		<div class = "tab-pane fade" id = "signup" >
+			  	<form class="form-horizontal" role="form" action="/signUp/" method="post">
 					<div class="form-group">
     						<label class="control-label col-sm-2" for="name">Name:</label>
     						<div class="col-sm-6">
-      							<input type="text" class="form-control" id="name" placeholder="Enter your Name">
+      							<input type="text" class="form-control" name="nameSignup" placeholder="Enter your Name">
     						</div>
   					</div>
 					<div class="form-group">
     						<label class="control-label col-sm-2" for="rollno">Roll No:</label>
     						<div class="col-sm-6">
-      							<input type="text" class="form-control"id="rollno"placeholder="Enter your Roll number">
+      							<input type="text" class="form-control" name="rollnoSignup" placeholder="Enter your Roll number">
     						</div>
   					</div>
 					<div class="form-group">
     						<label class="control-label col-sm-2" for="batch">Batch:</label>
     						<div class="col-sm-6">
-      							<input type="text" class="form-control" id="batch" placeholder="Enter your Batch">
+      							<input type="text" class="form-control" name="batchSignup" placeholder="Enter your Batch">
     						</div>
   					</div>
 					<div class="form-group">
@@ -63,13 +63,13 @@
   					<div class="form-group">
     						<label class="control-label col-sm-2" for="email">Email:</label>
     						<div class="col-sm-6">
-      							<input type="text" class="form-control" id="email" placeholder="Enter email">
+      							<input type="text" class="form-control" name="emailSignup" placeholder="Enter email">
     						</div>
   					</div>
   					<div class="form-group">
     						<label class="control-label col-sm-2" for="pwd">Password:</label>
     						<div class="col-sm-6">
-      							<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+      							<input type="password" class="form-control" name="pwdSignup" placeholder="Enter password">
     						</div>
   					</div>  					
   					<div class="form-group">
@@ -77,6 +77,7 @@
       							<button type="signupbutton" class="btn btn-primary">Signup</button>
     						</div>
   					</div>
+            {%csrf_token%}
 				</form>
 	   		</div>
 	   		<div class = "tab-pane fade in active" id = "login">
