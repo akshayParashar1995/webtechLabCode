@@ -111,17 +111,16 @@ body {
 </br>
 
 <div class = "jumbotron" id="section2"> 
-  <h1>{{content.course.course_name}}</h1>
+<legend><h1 style="margin-left: 40%;">{{content.course.course_name}}</h1></legend>
   {% for notes in content.arrofnotes %}
     <div class="panel panel-default">
-    <div class="panel-heading">{{notes.title}}</div>
-    <div class="panel-body"><h4>Notes updated on : {{notes.date}}</h4><br>
+    <div class="panel-heading"style="font-size: x-large;background-color: rgba(122, 255, 0, 0.7);"><b><u>>{{notes.title}}</u></b></div>
+    <div class="panel-body" style="background-color:rgb(88, 142, 89);"><h3 style="font-weight: 600;"><h4>Notes updated on : {{notes.date}}</i></h4><br><br>
     <a href = "/openNotes/?notesid={{notes.id}}" class="btn btn-primary">View Notes in PDF</a>
     </div>
-    </div>
+ </div> 
   {% endfor %}
-
-</div>        
-    
+    </div>        
+   
 </body>
 </html>
