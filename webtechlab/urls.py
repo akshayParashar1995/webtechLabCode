@@ -25,8 +25,9 @@ urlpatterns = [
 	url(r'^login/$', views.login, name='login'),
 	url(r'^temp/$', views.temp, name='temp'),
 	url(r'^loginCredentials/$', views.loginCredentials, name='loginCredentials'),
-
+	url(r'^openProfile/$', views.openProfile),
 	url(r'^openTest/$', views.openTest),
+	url(r'^openCourses/$', views.openCourses),
 
 	url(r'^signUp/$', views.signUp, name='signUp'),
 	url(r'^submitAnswer/$', views.submitAnswer),
