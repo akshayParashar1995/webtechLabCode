@@ -64,7 +64,7 @@ body {
   .dropdown-menu li a:hover {
       background-color: red !important;
   }
-  #section2 {color: #fff; background-color: #c1c38d;}
+  #section2 {color: #000; background-color: #c1c38d;}
   
   @media screen and (max-width: 810px) {
     #section1, #section2, #section3, #section41, #section42  {
@@ -111,23 +111,14 @@ body {
 </br>
 
 <div class = "jumbotron" id="section2"> 
-  <h1>Notes</h1>
-  <div class="panel panel-default">
-  <div class="panel-heading">Notes</div>
-  <div class="panel-body">Panel Content</div>
- </div>
-<div class="panel panel-default">
-  <div class="panel-heading">Notes</div>
-  <div class="panel-body">Panel Content</div>
- </div>
-<div class="panel panel-default">
-  <div class="panel-heading">Notes</div>
-  <div class="panel-body">Panel Content</div>
- </div>
-<div class="panel panel-default">
-  <div class="panel-heading">Notes</div>
-  <div class="panel-body">Panel Content</div>
- </div>   
+  <h1>Courses</h1>
+  {% for course in courses %}
+    <div class="panel panel-default">
+    <div class="panel-heading">{{course.course_name}}</div>
+    <div class="panel-body"><h3>Course duration : {{course.duration}}</h3><br><h4>Course Fees : {{course.course_fee}}</h4></div>
+    </div>
+  {% endfor %}
+
 </div>        
     
 </body>

@@ -62,32 +62,10 @@ def loginCredentials(request):
 		auth.login(request, user)
 		stat = 1;
 		return displayContent(request,user)
-		# content = {'user': user,'status': stat}
-		# return render(request,'dashBoard.html',{'content':content})
 	else:		
 		stat = "invalid username or password";
 		return render(request,'login.html', {'status': stat})
 
-	# print(request.POST.get("loginEmailName",''));
-	# print(request.POST.get("loginPwdName",''));
-	
-	# #user =  User.objects.filter(email=request.GET.get("email"), password=request.GET.get("pwd"))
-	# #if user is not None:
-	# user_info=User.objects.filter(email=request.POST.get("loginEmailName",''), password=request.POST.get("loginPwdName",''))
-	# print(User.objects.all())
-	# print(User.objects.filter(password=request.POST.get("loginPwdName",'')))
-
-	# if len(user_info)>0:
-	# # the password verified for the user
-	# 	print("The password is valid")
-	# 	stat=1;
-	# 	content={'user':user_info,'status':stat}
-	# 	return render(request,'dashBoard.html',{'content':content})
-	# else:
-	# # the authentication system was unable to verify the username and password
-	# 	print("The username and password were incorrect.")
-	# 	stat="invalid username or password";
-	# 	return render(request,'login.html',{'status':stat})
  
 def temp(request):
 
@@ -95,6 +73,34 @@ def temp(request):
 		"name": "Akshay",
 		"subjects": ['Math','asdsd','sadsda']
 	});
+
+def openProfile(request):
+	userId=request.GET.get("userid")
+	print(userId)
+	userLogged=User.objects.filter(id=userId)
+	student = Student.objects.filter(user = userLogged[0])
+	print(student[0])
+	stat = 1;
+	content = {'user':userLogged, 'student': student[0],'status': stat}
+
+
+	return render(request, 'userprofile.html', {'content':content})
+
+def openCourses(request):
+	userId=request.GET.get("userid")
+	viewall=request.GET.get("viewall")
+	print(userId)
+	print(viewall)
+	if(viewall==str(1)):
+		courses=Course.objects.all()
+	else:
+		userLogged=User.objects.filter(id=userId)
+		student = Student.objects.filter(user = userLogged[0])
+		courses=student[0].st_course.all()
+	print(courses)
+	return render(request, 'listOfNotes.html', {'courses':courses})
+
+
 
 def openTest(request):
 	testId = request.GET.get("testid")
