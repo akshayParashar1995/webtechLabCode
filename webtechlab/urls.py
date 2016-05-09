@@ -33,6 +33,7 @@ urlpatterns = [
 	url(r'^submitAnswer/$', views.submitAnswer),
 	url(r'^openNotesList/$', views.openNotesList),
 	url(r'^openNotes/$', views.openNotes),
+	url(r'^openDashboard/$', views.openDashboard),
 
 #	url(r'^dashBoard/$', views.dashBoard, name='dashBoard'),
 			

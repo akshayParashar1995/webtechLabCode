@@ -86,15 +86,7 @@ body {
 		<li><a href="#myPage">DASHBOARD</a></li>
 		<li><a href = "/openCourses/?userid={{content.user.id}}&viewall=1">COURSES</a></li>
 		<li><a href = "/openProfile/?userid={{content.user.id}}">PROFILE</a></li>
-		<li class="dropdown">
-		  <a class="dropdown-toggle" data-toggle="dropdown" href="#">WORK
-		  <span class="caret"></span></a>
-		  <ul class="dropdown-menu">
-			<li><a href="#">NOTES</a></li>
-			<li><a href="#">ASSIGNMENT</a></li>
-			<li><a href="#">TEST</a></li> 
-		  </ul>
-		</li>
+		
 	  </ul>
 	</div>
   </div>
@@ -128,7 +120,7 @@ body {
 			<p><i><u>{{d.coursename}}</u></i></p><br>
 				{% if d.notes %}
 					{% for i in d.notes %}
-						<p style="color:blue;">{{i.title}}</p><br>
+						<a href = "/openNotes/?notesid={{i.id}}"><p style="color:blue;">{{i.title}}</p></a><br>
 					{% endfor %}
 					<hr class="hrc">
 				{% else %}
@@ -181,12 +173,14 @@ body {
 			<div class="panel-heading"><h3 class="h3">Notes:</h3> <p><i><u>{{d.coursename}}</u></i></p></div>	
 			<div class="panel-body">
 				{% if d.notes %}
-					{% for i in d.notes %}
-						<p style="color:blue;">{{i.title}}</p><br>
+					{% for i in d.notes %}<h6>
+						<a href = "/openNotes/?notesid={{i.id}}">
+						<p style="color:blue;">{{i.title}}</p></a><br>
 						<p style="color: grey;"><i>prepared by:</i></p>
 						<p style="color:green;">{{i.teacher}}</p>
 						<p style="color:black;">{{i.date}}</p>
 						<hr class="hrc">
+						</h6>
 					{% endfor %}
 				{% else %}
 					<p><i>No notes available.</i></p>
@@ -204,7 +198,7 @@ body {
 			<div class="panel-body">
 				{% if d.assignment %}
 					{% for i in d.assignment %}
-						<p style="color:blue;">{{i.title}}</p><br>
+						<p style="color:blue;">{{i.title}}</p>
 						<p style="color: grey;"><i>last date of submisssion:</i></p>
 						<p style="color: green;">{{i.date_of_submission}}</p>
 						<hr class="hrc">
@@ -226,17 +220,18 @@ body {
 			<div class="panel-body">
 				{% if d.test %}
 					{% for i in d.test %}
-						<p style="color:blue;">{{i.title}}</p>
+						<a href = "/openTest/?testid={{i.id}}">
+						<p style="color:blue;">{{i.title}}</p></a>
 						<p style="color: grey;"><i>Date of test:</i></p>
-						<p style="color:green;">{{i.date_of_test}}</p><br>
+						<p style="color:green;">{{i.date_of_test}}</p>
 						<p style="color: grey;"><i>Maximum marks:</i></p>
-						<p style="color:#BBBB21;;">{{i.max_marks}}</p><br>
+						<p style="color:#BBBB21;;">{{i.max_marks}}</p>
 						<p style="color: grey;"><i>Time limit:</i></p>
 						<p style="color:black;">{{i.duration}}</p>
 						<hr class="hrc">
 					{% endfor %}
 				{% else %}
-					<p>No assignment available.</p>
+					<p>No Test available.</p>
 				{% endif %}
 		    </div>
 		 </div>	

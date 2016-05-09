@@ -93,6 +93,8 @@ def openProfile(request):
 def openCourses(request):
 	userId=request.GET.get("userid")
 	viewall=request.GET.get("viewall")
+	user = request.user
+	# print(user)
 	print(userId)
 	print(viewall)
 	if(viewall==str(1)):
@@ -102,13 +104,14 @@ def openCourses(request):
 		student = Student.objects.filter(user = userLogged[0])
 		courses=student[0].st_course.all()
 	# print(courses)
-	return render(request, 'listOfCourses.html', {'courses':courses})
+	content = {'courses':courses, 'user' : user}
+	return render(request, 'listOfCourses.html', { 'content' : content})
 
 
 
 def openTest(request):
 	testId = request.GET.get("testid")
-	
+	user = request.user
 	test = Test.objects.filter(id = testId)
 	arrofquestions = []
 	questions = Questions.objects.all()
@@ -118,11 +121,14 @@ def openTest(request):
 		if(str(i.test_id) == str(test[0].title)):
 			arrofquestions.append(i)
 	content={'test':test[0], 'arrofquestions': arrofquestions}
-	
+	user = request.user
 	# print(test[0])
 	# print(arrofquestions)
-	return render(request, 'testWithSubmitButton.html', {'content':content})
+	return render(request, 'testWithSubmitButton.html', {'content':content, 'user':user})
 
+def openDashboard(request):
+	user = request.user
+	return displayContent(request, user)
 
 def displayContent(request,user):
 	student = Student.objects.filter(user = user)
@@ -197,6 +203,7 @@ def openNotesList(request):
 	courseId = request.GET.get("courseid")
 	course = Course.objects.filter(id = courseId)
 	notes = Notes.objects.all()
+	user = request.user
 	# print(course[0].course_name)
 	arrofnotes = []
 	for i in notes:
@@ -204,13 +211,14 @@ def openNotesList(request):
 		if(str(i.course_id) == str(course[0].course_name)):
 			arrofnotes.append(i)
 	print(arrofnotes)
-	content={'course':course[0], 'arrofnotes': arrofnotes}
+	content={'course':course[0], 'arrofnotes': arrofnotes, 'user':user}
 	return render(request, 'listOfNotes.html', {'content':content})
 
 def openNotes(request):
 	notesId = request.GET.get("notesid")
 	notes = Notes.objects.filter(id = notesId)
+	user = request.user
 	course = Course.objects.filter(course_name = notes[0].course_id)
 	link = "/static/notes/" + str(notes[0].link) + ".pdf"
-	content={'notes': notes[0], 'course':course[0], 'link' : link}
+	content={'notes': notes[0], 'course':course[0], 'link' : link, 'user':user}
 	return render(request, 'notes.html', {'content':content})

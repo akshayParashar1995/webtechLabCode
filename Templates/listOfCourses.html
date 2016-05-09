@@ -85,25 +85,10 @@ body {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">DASHBOARD</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">COURSES          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="h.html">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JAVA</a></li> 
-          </ul>
-        </li>
-        <li><a href="#tour">PROFILE</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">WORK
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">NOTES</a></li>
-            <li><a href="#">ASSIGNMENT</a></li>
-            <li><a href="#">TEST</a></li> 
-          </ul>
-        </li>
+        <li><a href="/openDashboard/?userid={{content.user.id}}">DASHBOARD</a></li>
+        <li><a href = "/openCourses/?userid={{content.user.id}}&viewall=1">COURSES</a></li>
+        <li><a href = "/openProfile/?userid={{content.user.id}}">PROFILE</a></li>
+        
       </ul>
     </div>
   </div>
@@ -112,7 +97,7 @@ body {
 
 <div class = "jumbotron" id="section2"> 
   <h1>Courses</h1>
-  {% for course in courses %}
+  {% for course in content.courses %}
     <div class="panel panel-default">
     <div class="panel-heading">{{course.course_name}}</div>
     <div class="panel-body"><h3>Course duration : {{course.duration}}</h3><br><h4>Course Fees : {{course.course_fee}}</h4>
