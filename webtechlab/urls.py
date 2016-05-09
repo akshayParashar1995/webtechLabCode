@@ -29,6 +29,7 @@ urlpatterns = [
 	url(r'^openTest/$', views.openTest),
 
 	url(r'^signUp/$', views.signUp, name='signUp'),
+	url(r'^submitAnswer/$', views.submitAnswer),
 
 #	url(r'^dashBoard/$', views.dashBoard, name='dashBoard'),
 			

@@ -19,6 +19,10 @@ from django.views.decorators.http import require_POST
 from django.contrib import auth
 
 # Create your views here.
+
+dict = {}
+
+
 def login(request):
 
 	return render(request,'login.html',{
@@ -108,8 +112,9 @@ def openTest(request):
 		if(str(i.test_id) == str(test[0].title)):
 			arrofquestions.append(i)
 	content={'test':test[0], 'arrofquestions': arrofquestions}
+	
 	# print(test[0])
-	print(arrofquestions)
+	# print(arrofquestions)
 	return render(request, 'testWithSubmitButton.html', {'content':content})
 
 
@@ -142,9 +147,42 @@ def displayContent(request,user):
 			temp['test'].append(j)
 
 		arrofdata.append(temp)
-	print("arrofdata::::                 ")
-	print(arrofdata)
+	# print("arrofdata::::                 ")
+	# print(arrofdata)
 	stat = 1;
 	content = {'user':user, 'arrofdata': arrofdata,'status': stat}
 	
 	return render(request,'dashBoard.html',{'content':content})
+
+def submitAnswer(request):
+	# print(request)
+	print(request.GET.get('qid'))
+	print(request.GET.get('ansid'))
+	qid = request.GET.get('qid')
+	ansid = request.GET.get('ansid')
+	question = Questions.objects.filter(id = qid)
+	answers = Answers.objects.filter(question_id = question[0].id)
+	print(answers[0].isCorrect)
+	status = 0
+	if( qid in dict):
+		if( dict[qid] == 1):
+			status = -1
+			dict[qid] = 0
+		elif(str(answers[0].isCorrect) == str(ansid)):
+			status = 1
+			dict[qid] = 1
+		else:
+			status = 0
+	else:
+		if(str(answers[0].isCorrect) == str(ansid)):
+			dict[qid] = 1
+			status = 1
+		else:
+			dict[qid] = 0
+			status = 0
+
+	temp = {
+		'status': status,
+		'length': len(dict)
+	}
+	return HttpResponse(json.dumps(temp), content_type="application/json")

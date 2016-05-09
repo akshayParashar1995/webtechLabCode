@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="..{{STATIC_URL}}js/login.js"></script>
+
   <style >
   body {
       font: 400 15px/1.8 Lato, sans-serif;
@@ -98,22 +100,22 @@
     <div class="well"><p>Q. {{q.question_text}}</p>
   <form role="form">
     <label class="radio">
-      <input type="radio" name="optradio">{{q.answer1}}
+      <input type="radio" name="{{q.id}}" value = "1" id = "op1-{{q.id}}">{{q.answer1}}
     </label>
     <label class="radio">
-      <input type="radio" name="optradio">{{q.answer2}}
+      <input type="radio" name="{{q.id}}" value = "2" id = "op2-{{q.id}}">{{q.answer2}}
     </label>
     <label class="radio">
-      <input type="radio" name="optradio">{{q.answer3}}
+      <input type="radio" name="{{q.id}}" value = "3" id = "op3-{{q.id}}">{{q.answer3}}
     </label>
     <label class = "radio">
-      <input type = "radio" name="optradio">{{q.answer4}}
+      <input type = "radio" name="{{q.id}}" value = "4" id = "op4-{{q.id}}">{{q.answer4}}
     </label>
   </form>
     </div>
   </div> 
   {% endfor %}
-  <input type="submit" class="btn btn-info btn-lg" value="Submit Button">   
+  <input type="submit" class="btn btn-info btn-lg" value="Submit Button" id = "submitTest">   
 </div>
 </br>
 </body>
