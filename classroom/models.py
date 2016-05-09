@@ -61,6 +61,7 @@ class Notes(models.Model):
 	teacher_id=models.ForeignKey(Teacher)
 	date=models.DateTimeField()
 	title=models.CharField(max_length=100)
+	link = models.CharField(max_length=50)
 	def __str__(self):
 		return self.title;
 	
@@ -100,7 +101,7 @@ class Video(models.Model):
 	teacher_id=models.ForeignKey(Teacher)
 	date=models.DateTimeField()
 	title=models.CharField(max_length=100)
-	# path 
+	link = models.CharField(max_length=50)
 	description = models.CharField(max_length = 255)	
 	def __str__(self):
 		return self.title;
