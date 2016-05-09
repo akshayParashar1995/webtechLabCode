@@ -73,6 +73,23 @@ def temp(request):
 		"subjects": ['Math','asdsd','sadsda']
 	});
 
+def openTest(request):
+	testId = request.GET.get("testid")
+	
+	test = Test.objects.filter(id = testId)
+	arrofquestions = []
+	questions = Questions.objects.all()
+	# print(test[0].title)
+	for i in questions:
+		# print(i.test_id)
+		if(str(i.test_id) == str(test[0].title)):
+			arrofquestions.append(i)
+	content={'test':test[0], 'arrofquestions': arrofquestions}
+	# print(test[0])
+	print(arrofquestions)
+	return render(request, 'testWithSubmitButton.html', {'content':content})
+
+
 def displayContent(request,user):
 	student = Student.objects.filter(user = user)
 	print(student[0].st_course.all())

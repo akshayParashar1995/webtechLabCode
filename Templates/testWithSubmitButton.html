@@ -91,60 +91,28 @@
 </br>
 <div class="container">
   <div class="page-header">
-    <h1>Computer Graphics :Test</h1>      
+    <h1>{{content.test.course_id}} : {{content.test.title}}</h1>      
   </div>
+  {% for q in content.arrofquestions %}
   <div class="jumbotron jumbo1">
-    <div class="well"><p>Q1. What is your name?</p>
+    <div class="well"><p>Q. {{q.question_text}}</p>
   <form role="form">
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Aanchal
+    <label class="radio">
+      <input type="radio" name="optradio">{{q.answer1}}
     </label>
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Anandita
+    <label class="radio">
+      <input type="radio" name="optradio">{{q.answer2}}
     </label>
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Anjali
+    <label class="radio">
+      <input type="radio" name="optradio">{{q.answer3}}
     </label>
-    <label class = "radio-inline">
-      <input type = "radio" name="optradio">Akshay
-    </label>
-  </form>
-    </div>
-
-    <div class="well"><p>Q1. What is your name?</p>
-  <form role="form">
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Aanchal
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Anandita
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Anjali
-    </label>
-    <label class = "radio-inline">
-      <input type = "radio" name="optradio">Akshay
-    </label>
-  </form>
-    </div>
-
-    <div class="well"><p>Q1. What is your name?</p>
-  <form role="form">
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Aanchal
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Anandita
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Anjali
-    </label>
-    <label class = "radio-inline">
-      <input type = "radio" name="optradio">Akshay
+    <label class = "radio">
+      <input type = "radio" name="optradio">{{q.answer4}}
     </label>
   </form>
     </div>
   </div> 
+  {% endfor %}
   <input type="submit" class="btn btn-info btn-lg" value="Submit Button">   
 </div>
 </br>

@@ -162,7 +162,8 @@ body {
 			<p><i><u>{{d.coursename}}</u></i></p>
 				{% if d.test %}
 					{% for i in d.test %}
-						<p style="color:blue;">{{i.title}}</p>
+						<a href = "/openTest/?testid={{i.id}}">
+						<p style="color:blue;">{{i.title}}</p></a>
 						<hr class="hrc">
 					{% endfor %}
 				{% else %}

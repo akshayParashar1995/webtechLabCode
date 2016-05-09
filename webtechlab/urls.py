@@ -25,6 +25,8 @@ urlpatterns = [
 	url(r'^login/$', views.login, name='login'),
 	url(r'^temp/$', views.temp, name='temp'),
 	url(r'^loginCredentials/$', views.loginCredentials, name='loginCredentials'),
+	url(r'^openTest/$', views.openTest),
+
 #	url(r'^dashBoard/$', views.dashBoard, name='dashBoard'),
 			
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
