@@ -156,6 +156,33 @@ def openProfile(request):
 
 	return render(request, 'userprofile.html', {'content':content})
 
+
+ 	
+def addAssignment(request):
+	courseid=request.GET.get("courseid")
+	content = {'courseid': courseid}
+	return render(request, 'addAssignmentForm.html', {'content':content})
+
+def addAssignmentDetails(request):
+	print(request)
+	topic = request.POST.get("assign_topic")
+	print(topic)
+	assign_description = request.POST.get("assign_description")
+	print(assign_description)
+	assign_date = request.POST.get("assign_date")
+	print(assign_date)
+	courseid = request.POST.get("courseid")
+	print(courseid)
+	course=Course.objects.filter(id=courseid)
+	print(course)
+	assignment=Assignment(title=topic,date_of_submission=datetime.datetime.now())
+	assignment.course_id=course[0]
+	assignment.save()
+	
+
+
+
+
 def openCourses(request):
 	userId=request.GET.get("userid")
 	viewall=request.GET.get("viewall")

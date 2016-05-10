@@ -27,7 +27,9 @@ urlpatterns = [
 	url(r'^openProfile/$', views.openProfile),
 	url(r'^openTest/$', views.openTest),
 	url(r'^openCourses/$', views.openCourses),
+	url(r'^addAssignment/$', views.addAssignment),
 
+	url(r'^addAssignmentDetails/$', views.addAssignmentDetails, name='addAssignmentDetails'),
 	url(r'^signUp/$', views.signUp, name='signUp'),
 	url(r'^submitAnswer/$', views.submitAnswer),
 	url(r'^openNotesList/$', views.openNotesList),

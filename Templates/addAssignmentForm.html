@@ -94,24 +94,61 @@ body {
   </div>
 </nav>
 </br>
+<div class = "jumbotron" id="section3"> 
+        
+        <div class="container">
+    <h1>Assignment</h1>
+    <hr>
+  
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        
+      
+        <h3>Add assignment details</h3>
+        
+        <form class="form-horizontal" role="form"  action="/addAssignmentDetails/" method="post">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Topic:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="assign_topic" value="Data Structures">
+            </div>
+          </div>
+   <div class="form-group">
+            <div class="col-lg-8">
+              <input class="form-control" type="hidden" name="courseid" value="{{content.courseid}}">
+            </div>
+          </div>        
+          
+  <div class="form-group">
+            <label class="col-lg-3 control-label">Enter Descripton:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="assign_description" value="Involves basic algos">
+            </div>
+          </div>
+<div class="form-group">
+            <label class="col-lg-3 control-label">Date of Submission:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="assign_date" value="03/11/1862">
+            </div>
+          </div>
+<div class="form-group">
+  <label class="col-lg-3 control-label">Upload assignment:</label>
+        <div class="col-lg-8">
+          <input type="file" class="form-control">
+        </div>
+      </div>
+          
+                    <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        {%csrf_token%}
+        </form>
+        </div>
 
-<div class = "jumbotron" id="section2"> 
-  <h1>Courses</h1>
-  {% for course in content.courses %}
-    <div class="panel panel-default">
-    <div class="panel-heading">{{course.course_name}}</div>
-    <div class="panel-body"><h3>Course duration : {{course.duration}}</h3><br><h4>Course Fees : {{course.course_fee}}</h4>
-    <a href = "/openNotesList/?courseid={{course.id}}" class="btn btn-primary">View Notes</a>
-    {% if content.isteacher %}
-      <a href = "/addNotes/?courseid={{course.id}}" class="btn btn-primary">Add Notes</a>
-      <a href = "/addAssignment/?courseid={{course.id}}" class="btn btn-primary">Add Assignment</a>
-    {% endif %}
-
-    </div>
-    </div>
-  {% endfor %}
-
-</div>        
-    
 </body>
 </html>
