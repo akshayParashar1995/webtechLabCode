@@ -64,10 +64,20 @@ def loginCredentials(request):
 		stat = 1;
 		if ('loginStudent' in request.POST):
 			print("student")
-			return displayContentStudent(request,user)
+			student=Student.objects.filter(user=user)
+			if(len(student)==0):
+				stat = "invalid username or password";
+				return render(request,'login.html', {'status': stat})
+			else:
+				return displayContentStudent(request,user)
 		else:
 			print("teacher")
-			return displayContentTeacher(request,user)
+			teacher=Teacher.objects.filter(user=user)
+			if(len(teacher)==0):
+				stat = "invalid username or password";
+				return render(request,'login.html', {'status': stat})		
+			else:	
+				return displayContentTeacher(request,user)
 	else:		
 		stat = "invalid username or password";
 		return render(request,'login.html', {'status': stat})
@@ -116,22 +126,12 @@ def saveEditProfile(request):
 	userLogged=User.objects.filter(id=userid)[0]
 	student = Student.objects.filter(user = userLogged)[0]
 	
-	# abc = userLogged
-	# print(abc)
+
 	userLogged.set_password(password)
 	userLogged.username=username
 	userLogged.email=email
 	userLogged.save()
 	print(userLogged)
-	# print(userLogge
-# password bhi change kara de 
-# WAIT
-# done thanks but what was the fucking error :/
-# I am also thinking the same .. i guess updation was being done on object of array thats whyy .. bt still a mystery
-# accha tell me how do i add reset button action to a form as in cancel karne be go to previous page?
-# on which page u want it ?
-# WAIT
-# 		# WAIT
 
 	student.phone_no=phone
 	student.save()
