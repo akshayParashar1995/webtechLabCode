@@ -80,7 +80,7 @@
         <li class= "dropdown">
           <a class ="dropdown-toggle" data-toggle="dropdown"  href="#"><span class="glyphicon glyphicon-cog"></span></a>
           <ul class="dropdown-menu">
-            <li><a href = "/editProfile/?userid={{content.student.user.id}}">Edit Profile</A></li>
+            <li><A href="edit.html" >Edit Profile</A></li>
             <li><A href="edit.html" >Logout</A></li>
           </ul>
         </li>
@@ -106,7 +106,7 @@
                 </tr>
                 <tr>
                   <td>Department:</td>
-                  <td>COE</td>
+                  <td>{{content.student.user.username}}</td>
                 </tr>
                 
                 <tr>

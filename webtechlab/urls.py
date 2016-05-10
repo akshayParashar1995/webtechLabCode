@@ -34,6 +34,9 @@ urlpatterns = [
 	url(r'^openNotesList/$', views.openNotesList),
 	url(r'^openNotes/$', views.openNotes),
 	url(r'^openDashboard/$', views.openDashboard),
+	url(r'^editProfile/$', views.editProfile),
+	url(r'^saveEditProfile/$', views.saveEditProfile),
+	
 
 #	url(r'^dashBoard/$', views.dashBoard, name='dashBoard'),
 			

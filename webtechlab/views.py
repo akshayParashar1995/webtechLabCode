@@ -78,6 +78,70 @@ def temp(request):
 		"subjects": ['Math','asdsd','sadsda']
 	});
 
+def editProfile(request):
+	userId=request.GET.get("userid")
+	print(userId)
+	userLogged=User.objects.filter(id=userId)
+	student = Student.objects.filter(user = userLogged[0])
+	print(student[0])
+	stat = 1;
+	content = {'user':userLogged, 'student': student[0],'status': stat}
+
+	return render(request, 'editProfile.html', {'content':content})
+
+
+def saveEditProfile(request):
+	print(request)
+	username = request.POST.get("username")
+	print(username)
+	dob = request.POST.get("dob")
+	print(dob)
+	gender = request.POST.get("gender")
+	print(gender)
+	add = request.POST.get("address")
+	print(add)
+	email = request.POST.get("email")
+	print(email)
+	password = request.POST.get("pass")
+	print(password)
+	dept = request.POST.get("dept")
+	print(dept)
+	phone = request.POST.get("phone")
+	print(phone)
+	userid = request.POST.get("userid")
+	print(userid)
+	
+	userLogged=User.objects.filter(id=userid)[0]
+	student = Student.objects.filter(user = userLogged)[0]
+	
+	# abc = userLogged
+	# print(abc)
+	userLogged.set_password(password)
+	userLogged.username=username
+	userLogged.email=email
+	userLogged.save()
+	print(userLogged)
+	# print(userLogge
+# password bhi change kara de 
+# WAIT
+# done thanks but what was the fucking error :/
+# I am also thinking the same .. i guess updation was being done on object of array thats whyy .. bt still a mystery
+# accha tell me how do i add reset button action to a form as in cancel karne be go to previous page?
+# on which page u want it ?
+# WAIT
+# 		# WAIT
+
+	student.phone_no=phone
+	student.save()
+
+	print(student.phone_no)
+	print(userLogged.username)
+	content = {'user':userLogged, 'student': student}
+
+
+	return render(request, 'userprofile.html', {'content':content})
+
+
 def openProfile(request):
 	userId=request.GET.get("userid")
 	print(userId)
