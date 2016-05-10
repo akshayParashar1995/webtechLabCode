@@ -103,8 +103,8 @@ body {
     <div class="panel-body"><h3>Course duration : {{course.duration}}</h3><br><h4>Course Fees : {{course.course_fee}}</h4>
     <a href = "/openNotesList/?courseid={{course.id}}" class="btn btn-primary">View Notes</a>
     {% if content.isteacher %}
-      <a href = "/addNotes/?courseid={{course.id}}" class="btn btn-primary">Add Notes</a>
-      <a href = "/addAssignment/?courseid={{course.id}}" class="btn btn-primary">Add Assignment</a>
+      <a href = "/addNotes/?courseid={{course.id}}&userid={{user.id}}" class="btn btn-primary">Add Notes</a>
+      <a href = "/addAssignment/?courseid={{course.id}}&userid={{user.id}}" class="btn btn-primary">Add Assignment</a>
     {% endif %}
 
     </div>

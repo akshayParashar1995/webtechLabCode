@@ -160,7 +160,10 @@ def openProfile(request):
  	
 def addAssignment(request):
 	courseid=request.GET.get("courseid")
-	content = {'courseid': courseid}
+	userid=request.GET.get("userid")
+	content = {'courseid': courseid,'userid':userid}
+	print("userid here")
+	print(request.GET.get("userid"))
 	return render(request, 'addAssignmentForm.html', {'content':content})
 
 def addAssignmentDetails(request):
@@ -178,7 +181,12 @@ def addAssignmentDetails(request):
 	assignment=Assignment(title=topic,date_of_submission=datetime.datetime.now())
 	assignment.course_id=course[0]
 	assignment.save()
-	
+	userid=request.POST.get("userid")
+	print(userid)
+	userLogged=User.objects.filter(id=userid)
+	content = {'courses':course, 'user' : userLogged[0],'isteacher':1}
+	return render(request, 'listOfCourses.html', { 'content' : content})
+
 
 
 
