@@ -55,17 +55,19 @@ def signUp(request):
 
 def loginCredentials(request):
 
+	print(request.POST)
 	email = request.POST.get("loginEmailName")
 	password = request.POST.get("loginPwdName")
-	# print(email)
-	# print(password)
 	user = auth.authenticate(username = email, password = password)
-	# print(user)
-	# print(user)
 	if (user is not None):
 		auth.login(request, user)
 		stat = 1;
-		return displayContent(request,user)
+		if ('loginStudent' in request.POST):
+			print("student")
+			return displayContentStudent(request,user)
+		else:
+			print("teacher")
+			return displayContentTeacher(request,user)
 	else:		
 		stat = "invalid username or password";
 		return render(request,'login.html', {'status': stat})
@@ -157,18 +159,26 @@ def openProfile(request):
 def openCourses(request):
 	userId=request.GET.get("userid")
 	viewall=request.GET.get("viewall")
+	isteacher=request.GET.get("isteacher")
 	user = request.user
 	# print(user)
 	print(userId)
 	print(viewall)
+	print(isteacher)
 	if(viewall==str(1)):
 		courses=Course.objects.all()
 	else:
 		userLogged=User.objects.filter(id=userId)
-		student = Student.objects.filter(user = userLogged[0])
-		courses=student[0].st_course.all()
-	# print(courses)
-	content = {'courses':courses, 'user' : user}
+		if(isteacher==str(1)):
+			teacher = Teacher.objects.filter(user = userLogged[0])
+			courses=teacher[0].teacher_course.all()
+			print("teacher")
+		else:
+			student = Student.objects.filter(user = userLogged[0])
+			courses=student[0].st_course.all()
+			print("student")
+	print(courses)
+	content = {'courses':courses, 'user' : user,'isteacher':isteacher}
 	return render(request, 'listOfCourses.html', { 'content' : content})
 
 
@@ -195,8 +205,53 @@ def openDashboard(request):
 	return displayContent(request, user)
 
 def displayContent(request,user):
+	user=request.user
+	student=Student.objects.filter(user=user)
+	if(len(student)==0):
+		return displayContentTeacher(request,user)
+		print("teacher display")
+	else:
+		return displayContentStudent(request,user)
+		print("student display")
+
+
+def displayContentTeacher(request,user):
+	teacher=Teacher.objects.filter(user=user)
+	print(user.email)
+	# courses=teacher[0].teacher_course.all()
+	# print("details of teacher")
+	# arrofdata = []
+
+	# for i in courses:
+	# 	temp = {}
+	# 	temp['coursename'] = i.course_name
+	# 	temp['notes'] = []
+	# 	temp['assignment']= []
+	# 	temp['test'] = []
+
+	# 	notes = Notes.objects.filter(course_id = i.id)
+	# 	for j in notes:
+	# 		temp['notes'].append(j)
+
+	# 	assign = Assignment.objects.filter(course_id = i.id)
+	# 	for j in assign:
+	# 		temp['assignment'].append(j)
+
+	# 	testss = Test.objects.filter(course_id = i.id)
+	# 	for j in testss:
+	# 		temp['test'].append(j)
+
+	# 	arrofdata.append(temp)
+	# stat = 1;
+	content = {'user':user, 'teacher': teacher[0]}
+	print(content['teacher'])
+	print(content.values())
+	#print(content.teacher)
+	# print(arrofdata)
+	return render(request,'teacherDashBoard.html',{'content':content})
+
+def displayContentStudent(request,user):
 	student = Student.objects.filter(user = user)
-	# print(student[0].st_course.all())
 	courses=student[0].st_course.all()
 	arrofdata = []
 
@@ -207,24 +262,19 @@ def displayContent(request,user):
 		temp['assignment']= []
 		temp['test'] = []
 
-		# print(Notes.objects.filter(course_id = i.id))
 		notes = Notes.objects.filter(course_id = i.id)
 		for j in notes:
 			temp['notes'].append(j)
 
-		# print(Assignment.objects.filter(course_id = i.id))
 		assign = Assignment.objects.filter(course_id = i.id)
 		for j in assign:
 			temp['assignment'].append(j)
 
-		# print(Test.objects.filter(course_id = i.id))
 		testss = Test.objects.filter(course_id = i.id)
 		for j in testss:
 			temp['test'].append(j)
 
 		arrofdata.append(temp)
-	# print("arrofdata::::                 ")
-	# print(arrofdata)
 	stat = 1;
 	content = {'user':user, 'arrofdata': arrofdata,'status': stat}
 	
