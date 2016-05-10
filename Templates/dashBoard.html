@@ -117,16 +117,18 @@ body {
 			<div class="panel-heading"><h3 class="h3">Notes</h3></div>
 			<div class="panel-body">
 			{% for d in content.arrofdata %}
-			<p><i><u>{{d.coursename}}</u></i></p><br>
+			<p><u><center><h3>{{d.coursename}}</h3></center></u></p><br>
+			<div class="list-group">
 				{% if d.notes %}
 					{% for i in d.notes %}
-						<a href = "/openNotes/?notesid={{i.id}}"><p style="color:blue;">{{i.title}}</p></a><br>
+						<a href = "/openNotes/?notesid={{i.id}}" class="list-group-item"><h4><p style="color:blue;">{{i.title}}</p></h4></a><br>
 					{% endfor %}
 					<hr class="hrc">
 				{% else %}
 					<p><i>No notes available.</i></p>
 					<hr class="hrc">
 				{% endif %}
+			</div>
 			{% endfor %}
 			</div>
 		 </div>
@@ -134,15 +136,17 @@ body {
 			<div class="panel-heading"><h3 class="h3">Assignments</h3></div>
 			<div class="panel-body">
 			{% for d in content.arrofdata %}
-			<p><i><u>{{d.coursename}}</u></i></p>
+			<p><u><center><h3>{{d.coursename}}</h3></center></u></p><br>
+			<div class="list-group">
 				{% if d.assignment %}
 					{% for i in d.assignment %}
-						<p style="color:blue;">{{i.title}}</p><br>
+						<p style="color:blue;" class="list-group-item">{{i.title}}</p><br>
 					{% endfor %}
 					<hr class="hrc">
 				{% else %}
 					<p><i>No assignment available.</i></p>
 				{% endif %}
+			</div>
 			{% endfor %}
 			</div>
 		</div>
@@ -151,16 +155,18 @@ body {
 			<div class="panel-heading"><h3 class="h3">Test</h3></div>
 			<div class="panel-body">
 			{% for d in content.arrofdata %}
-			<p><i><u>{{d.coursename}}</u></i></p>
+			<p><u><center><h3>{{d.coursename}}</h3></center></u></p><br>
+			<div class="list-group">
 				{% if d.test %}
 					{% for i in d.test %}
-						<a href = "/openTest/?testid={{i.id}}">
+						<a href = "/openTest/?testid={{i.id}}" class="list-group-item">
 						<p style="color:blue;">{{i.title}}</p></a>
 						<hr class="hrc">
 					{% endfor %}
 				{% else %}
 					<p>No test available.</p>
 				{% endif %}
+			</div>
 			{% endfor %}
 			</div>
 		 </div>  
@@ -170,17 +176,22 @@ body {
 		<legend><h1>Notes</h1></legend>
 		{% for d in content.arrofdata %}
 		<div class="panel panel-default">
-			<div class="panel-heading"><h3 class="h3">Notes:</h3> <p><i><u>{{d.coursename}}</u></i></p></div>	
+			<div class="panel-heading"><p><u><center><h3>{{d.coursename}}</h3></center></u></p></div>	
 			<div class="panel-body">
+			<div class="list-group">
 				{% if d.notes %}
-					{% for i in d.notes %}<h6>
+					{% for i in d.notes %}
+						<div class="list-group-item">
+						<h6>
 						<a href = "/openNotes/?notesid={{i.id}}">
-						<p style="color:blue;">{{i.title}}</p></a><br>
-						<p style="color: grey;"><i>prepared by:</i></p>
-						<p style="color:green;">{{i.teacher}}</p>
-						<p style="color:black;">{{i.date}}</p>
+						<p style="color:blue;">{{i.title}}</p>
+						<p style="color: grey;" align="right"><i>prepared by:</i></p>
+						<p style="color:green;" align="right">{{i.teacher}}</p>
+						<p style="color:black;" align="right">{{i.date}}</p>
 						<hr class="hrc">
+						</a>
 						</h6>
+						</div>
 					{% endfor %}
 				{% else %}
 					<p><i>No notes available.</i></p>
@@ -194,13 +205,13 @@ body {
 		<legend><h1>Assignments</h1></legend>
 		{% for d in content.arrofdata %}
 		<div class="panel panel-default">
-			<div class="panel-heading"><h3 class="h3">Assignment:</h3> <p><i><u>{{d.coursename}}</u></i></p></div>	
+			<div class="panel-heading"><center><p><i><u>{{d.coursename}}</u></i></p></center></div>	
 			<div class="panel-body">
 				{% if d.assignment %}
 					{% for i in d.assignment %}
 						<p style="color:blue;">{{i.title}}</p>
-						<p style="color: grey;"><i>last date of submisssion:</i></p>
-						<p style="color: green;">{{i.date_of_submission}}</p>
+						<p style="color: grey;" align = "right"><i>last date of submisssion:</i></p>
+						<p style="color: green;" align = "right">{{i.date_of_submission}}</p>
 						<hr class="hrc">
 					{% endfor %}
 				{% else %}
@@ -221,13 +232,14 @@ body {
 				{% if d.test %}
 					{% for i in d.test %}
 						<a href = "/openTest/?testid={{i.id}}">
-						<p style="color:blue;">{{i.title}}</p></a>
+						<p style="color:blue;">{{i.title}}</p>
 						<p style="color: grey;"><i>Date of test:</i></p>
 						<p style="color:green;">{{i.date_of_test}}</p>
 						<p style="color: grey;"><i>Maximum marks:</i></p>
 						<p style="color:#BBBB21;;">{{i.max_marks}}</p>
 						<p style="color: grey;"><i>Time limit:</i></p>
 						<p style="color:black;">{{i.duration}}</p>
+						</a>
 						<hr class="hrc">
 					{% endfor %}
 				{% else %}
