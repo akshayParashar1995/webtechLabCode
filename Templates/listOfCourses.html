@@ -86,7 +86,7 @@ body {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/openDashboard/?userid={{content.user.id}}">DASHBOARD</a></li>
-        <li><a href = "/openCourses/?userid={{content.user.id}}&viewall=1">COURSES</a></li>
+        <li><a href = "/openCourses/?userid={{content.user.id}}&kviewall=1">COURSES</a></li>
         <li><a href = "/openProfile/?userid={{content.user.id}}">PROFILE</a></li>
         
       </ul>
@@ -102,6 +102,11 @@ body {
     <div class="panel-heading">{{course.course_name}}</div>
     <div class="panel-body"><h3>Course duration : {{course.duration}}</h3><br><h4>Course Fees : {{course.course_fee}}</h4>
     <a href = "/openNotesList/?courseid={{course.id}}" class="btn btn-primary">View Notes</a>
+    {% if content.isteacher %}
+      <a href = "/openNotesList/?courseid={{course.id}}" class="btn btn-primary">Add Notes</a>
+      <a href = "/openNotesList/?courseid={{course.id}}" class="btn btn-primary">Add Assignment</a>
+    {% endif %}
+
     </div>
     </div>
   {% endfor %}
