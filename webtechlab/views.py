@@ -83,6 +83,24 @@ def loginCredentials(request):
 		return render(request,'login.html', {'status': stat})
 
  
+def openProfile(request):
+	userId=request.GET.get("userid")
+	print(userId)
+	userLogged=User.objects.filter(id=userId)
+	student = Student.objects.filter(user = userLogged[0])
+	if(len(student)==0):
+		stat = 1;
+		teacher=Teacher.objects.filter(user=userLogged[0])
+		content = {'user':userLogged, 'student': teacher[0],'status': stat}	
+	else:
+		print(student[0])
+		stat = 1;
+		content = {'user':userLogged, 'student': student[0],'status': stat}
+
+
+	return render(request, 'userprofile.html', {'content':content})
+
+
 def temp(request):
 
 	return render(request,'temp.html',{
@@ -95,9 +113,14 @@ def editProfile(request):
 	print(userId)
 	userLogged=User.objects.filter(id=userId)
 	student = Student.objects.filter(user = userLogged[0])
-	print(student[0])
-	stat = 1;
-	content = {'user':userLogged, 'student': student[0],'status': stat}
+	if(len(student)==0):
+		stat = 1;
+		teacher=Teacher.objects.filter(user=userLogged[0])
+		content = {'user':userLogged, 'student': teacher[0],'status': stat}	
+	else:
+		print(student[0])
+		stat = 1;
+		content = {'user':userLogged, 'student': student[0],'status': stat}
 
 	return render(request, 'editProfile.html', {'content':content})
 
@@ -124,37 +147,28 @@ def saveEditProfile(request):
 	print(userid)
 	
 	userLogged=User.objects.filter(id=userid)[0]
-	student = Student.objects.filter(user = userLogged)[0]
-	
-
+	student = Student.objects.filter(user = userLogged)
 	userLogged.set_password(password)
 	userLogged.username=username
 	userLogged.email=email
 	userLogged.save()
-	print(userLogged)
+	
 
-	student.phone_no=phone
-	student.save()
-
-	print(student.phone_no)
-	print(userLogged.username)
-	content = {'user':userLogged, 'student': student}
-
-
-	return render(request, 'userprofile.html', {'content':content})
-
-
-def openProfile(request):
-	userId=request.GET.get("userid")
-	print(userId)
-	userLogged=User.objects.filter(id=userId)
-	student = Student.objects.filter(user = userLogged[0])
-	print(student[0])
-	stat = 1;
-	content = {'user':userLogged, 'student': student[0],'status': stat}
-
+	if(len(student)==0):
+		teacher=Teacher.objects.filter(user=userLogged)[0]
+		teacher.phone_no=phone
+		teacher.department=dept
+		teacher.save()
+		content = {'user':userLogged, 'student': teacher}	
+	else:
+		studen=student[0]
+		studen.phone_no=phone
+		studen.save()
+		content = {'user':userLogged, 'student': student}
 
 	return render(request, 'userprofile.html', {'content':content})
+
+
 
 
  	
