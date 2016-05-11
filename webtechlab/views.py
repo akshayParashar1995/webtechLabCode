@@ -64,15 +64,43 @@ def loginCredentials(request):
 		stat = 1;
 		if ('loginStudent' in request.POST):
 			print("student")
-			return displayContentStudent(request,user)
+			student=Student.objects.filter(user=user)
+			if(len(student)==0):
+				stat = "invalid username or password";
+				return render(request,'login.html', {'status': stat})
+			else:
+				return displayContentStudent(request,user)
 		else:
 			print("teacher")
-			return displayContentTeacher(request,user)
+			teacher=Teacher.objects.filter(user=user)
+			if(len(teacher)==0):
+				stat = "invalid username or password";
+				return render(request,'login.html', {'status': stat})		
+			else:	
+				return displayContentTeacher(request,user)
 	else:		
 		stat = "invalid username or password";
 		return render(request,'login.html', {'status': stat})
 
  
+def openProfile(request):
+	userId=request.GET.get("userid")
+	print(userId)
+	userLogged=User.objects.filter(id=userId)
+	student = Student.objects.filter(user = userLogged[0])
+	if(len(student)==0):
+		stat = 1;
+		teacher=Teacher.objects.filter(user=userLogged[0])
+		content = {'user':userLogged, 'student': teacher[0],'status': stat}	
+	else:
+		print(student[0])
+		stat = 1;
+		content = {'user':userLogged, 'student': student[0],'status': stat}
+
+
+	return render(request, 'userprofile.html', {'content':content})
+
+
 def temp(request):
 
 	return render(request,'temp.html',{
@@ -85,9 +113,14 @@ def editProfile(request):
 	print(userId)
 	userLogged=User.objects.filter(id=userId)
 	student = Student.objects.filter(user = userLogged[0])
-	print(student[0])
-	stat = 1;
-	content = {'user':userLogged, 'student': student[0],'status': stat}
+	if(len(student)==0):
+		stat = 1;
+		teacher=Teacher.objects.filter(user=userLogged[0])
+		content = {'user':userLogged, 'student': teacher[0],'status': stat}	
+	else:
+		print(student[0])
+		stat = 1;
+		content = {'user':userLogged, 'student': student[0],'status': stat}
 
 	return render(request, 'editProfile.html', {'content':content})
 
@@ -114,47 +147,63 @@ def saveEditProfile(request):
 	print(userid)
 	
 	userLogged=User.objects.filter(id=userid)[0]
-	student = Student.objects.filter(user = userLogged)[0]
-	
-	# abc = userLogged
-	# print(abc)
+	student = Student.objects.filter(user = userLogged)
 	userLogged.set_password(password)
 	userLogged.username=username
 	userLogged.email=email
 	userLogged.save()
-	print(userLogged)
-	# print(userLogge
-# password bhi change kara de 
-# WAIT
-# done thanks but what was the fucking error :/
-# I am also thinking the same .. i guess updation was being done on object of array thats whyy .. bt still a mystery
-# accha tell me how do i add reset button action to a form as in cancel karne be go to previous page?
-# on which page u want it ?
-# WAIT
-# 		# WAIT
+	
 
-	student.phone_no=phone
-	student.save()
-
-	print(student.phone_no)
-	print(userLogged.username)
-	content = {'user':userLogged, 'student': student}
-
+	if(len(student)==0):
+		teacher=Teacher.objects.filter(user=userLogged)[0]
+		teacher.phone_no=phone
+		teacher.department=dept
+		teacher.save()
+		content = {'user':userLogged, 'student': teacher}	
+	else:
+		studen=student[0]
+		studen.phone_no=phone
+		studen.save()
+		content = {'user':userLogged, 'student': student}
 
 	return render(request, 'userprofile.html', {'content':content})
 
 
-def openProfile(request):
-	userId=request.GET.get("userid")
-	print(userId)
-	userLogged=User.objects.filter(id=userId)
-	student = Student.objects.filter(user = userLogged[0])
-	print(student[0])
-	stat = 1;
-	content = {'user':userLogged, 'student': student[0],'status': stat}
 
 
-	return render(request, 'userprofile.html', {'content':content})
+ 	
+def addAssignment(request):
+	courseid=request.GET.get("courseid")
+	userid=request.GET.get("userid")
+	content = {'courseid': courseid,'userid':userid}
+	print("userid here")
+	print(request.GET.get("userid"))
+	return render(request, 'addAssignmentForm.html', {'content':content})
+
+def addAssignmentDetails(request):
+	print(request)
+	topic = request.POST.get("assign_topic")
+	print(topic)
+	assign_description = request.POST.get("assign_description")
+	print(assign_description)
+	assign_date = request.POST.get("assign_date")
+	print(assign_date)
+	courseid = request.POST.get("courseid")
+	print(courseid)
+	course=Course.objects.filter(id=courseid)
+	print(course)
+	assignment=Assignment(title=topic,date_of_submission=datetime.datetime.now())
+	assignment.course_id=course[0]
+	assignment.save()
+	userid=request.POST.get("userid")
+	print(userid)
+	userLogged=User.objects.filter(id=userid)
+	content = {'courses':course, 'user' : userLogged[0],'isteacher':1}
+	return render(request, 'listOfCourses.html', { 'content' : content})
+
+
+
+
 
 def openCourses(request):
 	userId=request.GET.get("userid")

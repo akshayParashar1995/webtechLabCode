@@ -4,105 +4,15 @@
   <title>Edit Profile</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css">
-  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="main.css">
   
 </head>
-<style >
-body {
-      font: 400 15px/1.8 Lato, sans-serif;
-      color: #777;
-      background:#295675 url('dreamcodes/bg_images/color/c4.jpg') no-repeat center top; 
- }
-  .container-fluid {
-      padding-top: 40px;
-      padding-bottom: 40px;
-  }
-  .nav-tabs li a {
-      color: #777;
-  }
-  .navbar {
-      font-family: Montserrat, sans-serif;
-      margin-bottom: 0;
-      background-color: #2d2d30;
-      border: 0;
-      font-size: 11px !important;
-      letter-spacing: 4px;
-      opacity: 0.9;
-  }
-  .navbar li a, .navbar .navbar-brand { 
-      color: #d5d5d5 !important;
-  }
-  .navbar-nav li a:hover {
-      color: #fff !important;
-  }
-  .navbar-nav li.active a {
-      color: #fff !important;
-      background-color: #29292c !important;
-  }
-  .navbar-default .navbar-toggle {
-      border-color: transparent;
-  }
-  .open .dropdown-toggle {
-      color: #fff;
-      background-color: #555 !important;
-  }
-  .dropdown-menu li a {
-      color: #000 !important;
-  }
-  .dropdown-menu li a:hover {
-      background-color: red !important;
-  }
-  #section1 {color: #fff; background-color: #9e8886;}
-  #section2 {color: #fff; background-color: #c1c38d;}
-  #section3 {color: #fff; background-color: #b9c5c8;}
-  #section41 {color: #fff; background-color: #d6c86f;}
-  #section42 {color: #fff; background-color: #e5857a;}
-  
-  @media screen and (max-width: 810px) {
-    #section1, #section2, #section3, #section41, #section42  {
-        margin-left: 150px;
-    }
-</style>
-<body id="myPage" data-spy="scroll" data-target=".sidebar" data-offset="50">
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#myPage">Hello {{content.user.email}}!</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">DASHBOARD</a></li>
-        <li><a href = "/openCourses/?userid={{content.user.id}}&viewall=0&isteacher=1">COURSES</a></li>
-        <li><a href="#tour">PROFILE</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">WORK
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">NOTES</a></li>
-            <li><a href="#">ASSIGNMENT</a></li>
-            <li><a href="#">TEST</a></li> 
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</br>
+<body>
   
 <div class="container">
-<span style="color:#FFFFFF">    
-<h1>Edit Profile</h1>
+    <h1>Edit Profile</h1>
     <hr>
   <div class="row">
       <!-- left column -->
@@ -162,27 +72,27 @@ body {
            		 <input class="form-control" type="text" name="dept" value="COE">
               </div>
             </div>
-          
+          </div>
           <div class="form-group">
-            <label class="col-md-9 control-label">Phone no:</label>
+            <label class="col-md-3 control-label">Phone no:</label>
             <div class="col-md-8">
               <input class="form-control" type="text" name="phone" value="{{content.student.phone_no}}">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-9 control-label">Password:</label>
+            <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
               <input class="form-control" type="password" name="pass" value="*******">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-9 control-label">Confirm password:</label>
+            <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
               <input class="form-control" type="password" value="*******">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-9 control-label"></label>
+            <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
       					<button type="submit" class="btn btn-primary">Save Changes</button>
               <span></span>
@@ -193,7 +103,6 @@ body {
         </form>
       </div>
   </div>
-</span>
 </div>
 </body>
 
